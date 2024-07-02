@@ -13,7 +13,7 @@ const createCity = async (req, res) => {
             err: {}
         });
     } catch (error) {
-        console.log("Something went wrong in Controller layer");
+        console.log(error);
         return res.status(500).json({
             data:{},
             success:false,
@@ -34,7 +34,7 @@ const updateCity = async (req, res) => {
             err: {}
         });
     } catch (error) {
-        console.log("Something went wrong in Controller layer");
+        console.log(error);
         return res.status(500).json({
             data:{},
             success:false,
@@ -55,7 +55,7 @@ const getCity = async (req, res) => {
             err: {}
         });
     } catch (error) {
-        console.log("Something went wrong in Controller layer");
+        console.log(error);
         return res.status(500).json({
             data:{},
             success:false,
@@ -76,7 +76,7 @@ const deleteCity = async (req, res) => {
             err: {}
         });
     } catch (error) {
-        console.log("Something went wrong in Controller layer");
+        console.log(error);
         return res.status(500).json({
             data:{},
             success:false,
@@ -88,7 +88,8 @@ const deleteCity = async (req, res) => {
 
 const getAllCities = async(req, res) => {
     try {
-        const cities = await cityService.getAllCities();
+        const {name} = req.query;
+        const cities = await cityService.getAllCities({name});
         return res.status(200).json({
             data: cities,
             success: true,
@@ -96,7 +97,7 @@ const getAllCities = async(req, res) => {
             err: {}
         })
     } catch (error) {
-        console.log("Something went wrong in Controller layer");
+        console.log(error);
         return res.status(500).json({
             data:{},
             sucess:false,
