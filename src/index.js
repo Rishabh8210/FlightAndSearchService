@@ -3,8 +3,7 @@ const bodyParser = require('body-parser')
 
 const { PORT } = require('./config/serverConfig')
 
-const {createCity, updateCity, getCity, deleteCity} = require('./controllers/index')
-
+const ApiRoutes = require('./routes/index')
 const serverSetup = async () => {
     
     // Express object
@@ -14,10 +13,8 @@ const serverSetup = async () => {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extrended : true}));
     
-    app.get('/city/:id', getCity)
-    app.post('/city', createCity)
-    app.delete('/city/:id', deleteCity)
-    app.patch('/city/:id', updateCity)
+    app.use('/api', ApiRoutes)
+
     // Server listening
     app.listen(PORT, () => {
         console.log(`Server is runnning at ${PORT}`);
