@@ -86,9 +86,30 @@ const deleteCity = async (req, res) => {
     }
 }   
 
+const getAllCities = async(req, res) => {
+    try {
+        const cities = await cityService.getAllCities();
+        return res.status(200).json({
+            data: cities,
+            success: true,
+            message: 'Successfully fetched all cities',
+            err: {}
+        })
+    } catch (error) {
+        console.log("Something went wrong in Controller layer");
+        return res.status(500).json({
+            data:{},
+            sucess:false,
+            message: 'Not able to fetch all cities',
+            err: error
+        });
+    }
+}
+
 module.exports = {
     createCity,
     updateCity,
     getCity,
-    deleteCity
+    deleteCity,
+    getAllCities
 }

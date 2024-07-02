@@ -5,8 +5,8 @@ class CityService {
     }
     async createCity(data){
         try {
-            const result = this.cityRepo.createCity(data)
-            return result;
+            const response = this.cityRepo.createCity(data)
+            return response;
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw {error}
@@ -14,8 +14,8 @@ class CityService {
     }
     async updateCity(cityid, data){
         try {
-            const result = this.cityRepo.updateCity(cityid, data)
-            return result;
+            const response = this.cityRepo.updateCity(cityid, data)
+            return response;
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw {error}
@@ -23,8 +23,8 @@ class CityService {
     }
     async getCity(cityid){
         try {
-            const result = this.cityRepo.getCity(cityid)
-            return result;
+            const response = this.cityRepo.getCity(cityid)
+            return response;
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw {error}
@@ -32,11 +32,20 @@ class CityService {
     }
     async deleteCity(cityid){
         try {
-            const result = this.cityRepo.deleteCity(cityid)
-            return result;
+            const response = this.cityRepo.deleteCity(cityid)
+            return response;
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw {error}
+        }
+    }
+    async getAllCities(){
+        try {
+            const cities = this.cityRepo.getAllCities();
+            return cities;
+        } catch (error) {
+            console.log("Something went wrong in Service layer");
+            throw {error};
         }
     }
 }
