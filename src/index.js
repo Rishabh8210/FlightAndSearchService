@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const { PORT } = require('./config/serverConfig')
 
 const ApiRoutes = require('./routes/index')
+
 const serverSetup = async () => {
     
     // Express object
@@ -16,7 +17,7 @@ const serverSetup = async () => {
     app.use('/api', ApiRoutes)
 
     // Server listening
-    app.listen(PORT, () => {
+    app.listen(PORT, async() => {
         console.log(`Server is runnning at ${PORT}`);
     })
 }
