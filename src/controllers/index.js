@@ -1,4 +1,4 @@
-const {createCity, updateCity, getCity, deleteCity, getAllCities, createMultipleCities } = require('./city-controller.js')
+const {createCity, updateCity, getCity, deleteCity, getAllCities, createMultipleCities, getCityAirports} = require('./city-controller.js')
 const { createAirport, getAirport, updateAirport, deleteAirport, getMultipleAirports, createMultipleAirports } = require('./airport-controller.js')
 module.exports = {
     createCity,
@@ -12,5 +12,6 @@ module.exports = {
     updateAirport,
     deleteAirport,
     getMultipleAirports,
-    createMultipleAirports
+    createMultipleAirports,
+    getCityAirports
 }

@@ -1,3 +1,4 @@
+const city = require('../models/city');
 const { CityService } = require('../services/index');
 
 const cityService = new CityService()
@@ -25,7 +26,7 @@ const createCity = async (req, res) => {
 
 const updateCity = async (req, res) => {
     try {
-        const id = req.params.id;
+        const {id} = req.params.id;
         const city = await cityService.updateCity(id,req.body)
         return res.status(201).json({
             data:city,
@@ -127,6 +128,26 @@ const createMultipleCities = async (req, res) => {
         })
     }
 }
+const getCityAirports = async(req, res) => {
+    try {
+        const id = req.params.id;
+        const airports = await cityService.getCityAirports(id);
+        return res.status(200).json({
+            data: airports,
+            sucess: true,
+            message: "Sucessfully fetched the respected airports of a city",
+            err: {}
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            data: {},
+            sucess: false,
+            message: "Not able to fetch respected airports of a citty",
+            err: error
+        })
+    }
+}
 
 module.exports = {
     createCity,
@@ -134,5 +155,6 @@ module.exports = {
     getCity,
     deleteCity,
     getAllCities,
-    createMultipleCities
+    createMultipleCities,
+    getCityAirports
 }
