@@ -27,15 +27,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    arivalAirportId: {
+    arrivalAirportId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    arrivalTime: {
+    departureTime: {
       type: DataTypes.DATE,
       allowNull: false
     },
-    departureTime: {
+    arrivalTime: {
       type: DataTypes.DATE,
       allowNull: false
     },

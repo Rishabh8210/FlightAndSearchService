@@ -101,7 +101,7 @@ const getAllCities = async(req, res) => {
         console.log(error);
         return res.status(500).json({
             data:{},
-            sucess:false,
+            success:false,
             message: 'Not able to fetch all cities',
             err: error
         });
@@ -114,15 +114,15 @@ const createMultipleCities = async (req, res) => {
         const cities = await cityService.createMultipleCities(data);
         return res.status(200).json({
             data: cities,
-            sucess: true,
-            message: 'Sucessfully created multiple cities',
+            success: true,
+            message: 'Successfully created multiple cities',
             err: {}
         })
     }catch(error){
         console.log(error)
         return res.status(500).json({
             data:{},
-            sucess: false,
+            success: false,
             message: 'Not able to create cities',
             err: error
         })
@@ -134,15 +134,15 @@ const getCityAirports = async(req, res) => {
         const airports = await cityService.getCityAirports(id);
         return res.status(200).json({
             data: airports,
-            sucess: true,
-            message: "Sucessfully fetched the respected airports of a city",
+            success: true,
+            message: "Successfully fetched the respected airports of a city",
             err: {}
         })
     } catch (error) {
         console.log(error)
         return res.status(500).json({
             data: {},
-            sucess: false,
+            success: false,
             message: "Not able to fetch respected airports of a citty",
             err: error
         })
