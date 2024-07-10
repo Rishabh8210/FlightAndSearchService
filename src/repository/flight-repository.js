@@ -13,13 +13,18 @@ class FlightRepository{
             filter.departureAirportId = data.departureAirportId
         }
 
+        let PriceFilter = [];
         if(data.minPrice){
-            Object.assign(filter, {price: {[Op.gte]: minPrice}})
+            PriceFilter.push({price: {[Op.lte]: minPrice}})
+            // Object.assign(filter, {price: {[Op.gte]: data.minPrice}})
         }
 
         if(data.maxPrice){
-            Object.assign(filter, {price: {[Op.lte]: maxPrice}});
+            PriceFilter.push({price: {[Op.lte]: data.maxPrice}})
+            // Object.assign(filter, {price: {[Op.lte]: maxPrice}});
         }
+
+        Object.assign(filter, {[Op.and]: PriceFilter});
 
         // Object.assign(filter, {
         //     [Op.and]: [

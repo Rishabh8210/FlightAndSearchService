@@ -28,6 +28,16 @@ class FlightService{
         }
     }
 
+    async getFlight(flightId){
+        try{
+            const flight = await this.flightRepo.getFlight(flightId);
+            return flight;
+        }catch(error){
+            console.log("Something went worng inside the Service layer");
+            throw {error}
+        }
+    }
+
     async getAllFlight(data){
         try {
             const flights = await this.flightRepo.getAllFlight(data);
