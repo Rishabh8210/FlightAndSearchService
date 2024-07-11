@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 
 const { PORT } = require('./config/serverConfig')
 const db = require('./models/index')
-const {City, Airport} = require('./models/index')
+
 const ApiRoutes = require('./routes/index')
 
 const serverSetup = async () => {
