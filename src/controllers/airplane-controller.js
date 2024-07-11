@@ -1,12 +1,12 @@
 const { AirplaneService } = require('../services/index');
 
 const airplaneService = new AirplaneService();
-
+const {ServerErrorCodes, SuccessCodes} = require('../utils/error-code')
 const createAirplane = async(req, res) => {
     try {
         const data = req.body;
         const airplane = await airplaneService.create(data);
-        return res.status(200).json({
+        return res.status(SuccessCodes.CREATED).json({
             data: airplane,
             success: true,
             message: 'Successfully created an airplane record',
@@ -14,7 +14,7 @@ const createAirplane = async(req, res) => {
         })
     } catch (error) {
         console.log(error);
-        return res.status(500).json({
+        return res.status(ServerErrorCodes.INTERNAL_SERVER_ERROR).json({
             data: {},
             success: false,
             message: "Not able to create an Airplane record",
@@ -28,7 +28,7 @@ const updateAirplane = async(req, res) => {
         const id = req.params.id;
         const data = req.body;  
         const airplane = await airplaneService.update(id, data);
-        return res.status(200).json({
+        return res.status(SuccessCodes.OK).json({
             data: airplane,
             success: true,
             message: 'Successfully updated an airplane record',
@@ -36,7 +36,7 @@ const updateAirplane = async(req, res) => {
         })
     } catch (error) {
         console.log(error);
-        return res.status(500).json({
+        return res.status(ServerErrorCodes.INTERNAL_SERVER_ERROR).json({
             data: {},
             success: false,
             message: "Not able to update an Airplaner record",
@@ -49,7 +49,7 @@ const deleteAirplane = async(req, res) => {
     try {
         const id = req.params.id;
         const airplane = await airplaneService.delete(id);
-        return res.status(200).json({
+        return res.status(SuccessCodes.OK).json({
             data: airplane,
             success: true,
             message: 'Successfully deleted an airplane record',
@@ -57,7 +57,7 @@ const deleteAirplane = async(req, res) => {
         })
     } catch (error) {
         console.log(error);
-        return res.status(500).json({
+        return res.status(ServerErrorCodes.INTERNAL_SERVER_ERROR).json({
             data: {},
             success: false,
             message: "Not able to delete an Airplane record",
@@ -71,7 +71,7 @@ const getAirplane = async(req, res) => {
         console.log(AirplaneService)
         const id = req.params.id;
         const airplane = await airplaneService.get(id);
-        return res.status(200).json({
+        return res.status(SuccessCodes.OK).json({
             data: airplane,
             success: true,
             message: 'Successfully fetched an airplane record',
@@ -79,7 +79,7 @@ const getAirplane = async(req, res) => {
         })
     } catch (error) {
         console.log(error);
-        return res.status(500).json({
+        return res.status(ServerErrorCodes.INTERNAL_SERVER_ERROR).json({
             data: {},
             success: false,
             message: "Not able to fetch an Airplane record",
@@ -91,7 +91,7 @@ const getAirplane = async(req, res) => {
 const getMultipleAirplanes = async(req, res) => {
     try {
         const airplane = await airplaneService.getMultipleAirplanes();
-        return res.status(200).json({
+        return res.status(SuccessCodes.OK).json({
             data: airplane,
             success: true,
             message: 'Successfully fetched all airplane records',
@@ -99,7 +99,7 @@ const getMultipleAirplanes = async(req, res) => {
         })
     } catch (error) {
         console.log(error);
-        return res.status(500).json({
+        return res.status(ServerErrorCodes.INTERNAL_SERVER_ERROR).json({
             data: {},
             success: false,
             message: "Not able to fetch all Airplane records",
@@ -111,7 +111,7 @@ const createMultipleAirplanes = async(req, res) => {
     try {
         const data = req.body;
         const airplane = await airplaneService.createMultipleAirplanes(data);
-        return res.status(200).json({
+        return res.status(SuccessCodes.OK).json({
             data: airplane,
             success: true,
             message: 'Successfully created multiple airplanes record',
@@ -119,7 +119,7 @@ const createMultipleAirplanes = async(req, res) => {
         })
     } catch (error) {
         console.log(error);
-        return res.status(500).json({
+        return res.status(ServerErrorCodes.INTERNAL_SERVER_ERROR).json({
             data: {},
             success: false,
             message: "Not able to create multiple Airplanes records",
