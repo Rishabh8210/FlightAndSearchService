@@ -1,5 +1,5 @@
 const { FlightService } = require('../services/index');
-
+const { validateCreateFlight } = require('../middlewares/index')
 const flightService = new FlightService();
 const createFlight = async (req, res) => {
     try{
