@@ -1,50 +1,8 @@
-const { Airplane } = require('../models/index');
-
-class AirplaneRepository{
-    async createAirplane(data){
-        try {
-            const airplane = await Airplane.create(data);
-            return airplane;
-        } catch (error) {
-            console.log("Something went wrong in Repository layer");
-            throw {error}
-        }
-    }
-    async deleteAirplane(id){
-        try {
-            const airplane = await Airplane.destroy({
-                where: {
-                    id: id
-                }
-            })
-            return true;
-        } catch (error) {
-            console.log("Something went wrong in Repository layer");
-            throw {error}
-        }
-    }
-    async updateAirplane(id, data){
-        try {
-            const airplane = await Airplane.findByPk(id);
-            if(airplane){
-                Object.assign(airplane, data);
-                await airplane.save();
-                return true;
-            }
-            return false;
-        } catch (error) {
-            console.log("Something went wrong in Repository layer");
-            throw {error}
-        }
-    }
-    async getAirplane(id){
-        try {
-            const airplane = await Airplane.findByPk(id);
-            return airplane;
-        } catch (error) {
-            console.log("Something went wrong in Repository layer");
-            throw {error}
-        }
+const { Airplane } = require('../models/index')
+const CrudRepository = require('./crud-repository')
+class AirplaneRepository extends CrudRepository{
+    constructor(){
+        super(Airplane)
     }
     async getMultipleAirplanes(){
         try {

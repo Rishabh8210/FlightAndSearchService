@@ -5,7 +5,7 @@ const airplaneService = new AirplaneService();
 const createAirplane = async(req, res) => {
     try {
         const data = req.body;
-        const airplane = await airplaneService.createAirplane(data);
+        const airplane = await airplaneService.create(data);
         return res.status(200).json({
             data: airplane,
             success: true,
@@ -27,7 +27,7 @@ const updateAirplane = async(req, res) => {
     try {
         const id = req.params.id;
         const data = req.body;  
-        const airplane = await airplaneService.updateAirplane(id, data);
+        const airplane = await airplaneService.update(id, data);
         return res.status(200).json({
             data: airplane,
             success: true,
@@ -48,7 +48,7 @@ const updateAirplane = async(req, res) => {
 const deleteAirplane = async(req, res) => {
     try {
         const id = req.params.id;
-        const airplane = await airplaneService.deleteAirplane(id);
+        const airplane = await airplaneService.delete(id);
         return res.status(200).json({
             data: airplane,
             success: true,
@@ -68,8 +68,9 @@ const deleteAirplane = async(req, res) => {
 
 const getAirplane = async(req, res) => {
     try {
+        console.log(AirplaneService)
         const id = req.params.id;
-        const airplane = await airplaneService.getAirplane(id);
+        const airplane = await airplaneService.get(id);
         return res.status(200).json({
             data: airplane,
             success: true,

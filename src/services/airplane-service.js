@@ -1,44 +1,11 @@
-const { AirplaneRepository } = require('../repository/index')
-class AirplaneService{
+const { AirplaneRepository } = require('../repository/index');
+const CrudService = require('./crud-service');
+class AirplaneService extends CrudService{
     constructor(){
+        super(new AirplaneRepository());
         this.airplaneRepo = new AirplaneRepository();
     }
-    async createAirplane(data){
-        try {
-            const airplane = await this.airplaneRepo.createAirplane(data);
-            return airplane;
-        } catch (error) {
-            console.log("Something went wrong in Service layer");
-            throw {error}
-        }
-    }
-    async deleteAirplane(id){
-        try {
-            const airplane = await this.airplaneRepo.deleteAirplane(id)
-            return true;
-        } catch (error) {
-            console.log("Something went wrong in Service layer");
-            throw {error}
-        }
-    }
-    async updateAirplane(id, data){
-        try {
-            const airplane = await this.airplaneRepo.updateAirplane(id, data);
-            return true;
-        } catch (error) {
-            console.log("Something went wrong in Service layer");
-            throw {error}
-        }
-    }
-    async getAirplane(id){
-        try {
-            const airplane = await this.airplaneRepo.getAirplane(id);
-            return airplane;
-        } catch (error) {
-            console.log("Something went wrong in Service layer");
-            throw {error}
-        }
-    }
+
     async getMultipleAirplanes(){
         try {
             const airplanes = await this.airplaneRepo.getMultipleAirplanes();

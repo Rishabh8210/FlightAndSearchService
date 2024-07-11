@@ -1,43 +1,9 @@
 const { AirportRepository } = require('../repository/index')
-class AirportService{
+const CrudService = require('./crud-service');
+class AirportService extends CrudService{
     constructor(){
+        super(new AirportRepository())
         this.airportRepo = new AirportRepository()
-    }
-    async createAirport(data) {
-        try {
-            const airport = await this.airportRepo.createAirport(data);
-            return airport;
-        } catch (error) {
-            console.log("Something went wrong in the Service layer")
-            throw {error}
-        }
-    }
-    async updateAirport(id, data) {
-        try {
-            const airport = await this.airportRepo.updateAirport(id, data);
-            return airport;
-        } catch (error) {
-            console.log("Something went wrong in the Service layer")
-            throw {error}
-        }
-    }
-    async deleteAirport(id) {
-        try {
-            const airport = await this.airportRepo.deleteAirport(id);
-            return airport;
-        } catch (error) {
-            console.log("Something went wrong in the Service layer")
-            throw {error}
-        }
-    }
-    async getAirport(id) {
-        try {
-            const airport = await this.airportRepo.getAirport(id);
-            return airport;
-        } catch (error) {
-            console.log("Something went wrong in the Service layer")
-            throw {error}
-        }
     }
     async createMultipleAirports(data) {
         try {

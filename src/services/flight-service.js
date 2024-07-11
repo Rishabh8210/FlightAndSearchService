@@ -1,7 +1,9 @@
 const { FlightRepository, AirplaneRepository } = require('../repository/index')
+const CrudRepository = require('./crud-service')
 const {compareTime} = require('../utils/helper')
-class FlightService{
+class FlightService extends CrudRepository{
     constructor(){
+        super(new FlightRepository())
         this.flightRepo = new FlightRepository()
         this.airplaneRepo = new AirplaneRepository()
     }
@@ -16,11 +18,11 @@ class FlightService{
     // totalSeats -> airplane
     async createFlight(data){
         try {
-            if(!compareTime(data.arrivalTime), data.departureTime){
+            if(!compareTime(data.arrivalTime, data.departureTime)){
                 throw {error: 'Arrival time cannot be less than departure time'};
             }
-            const airplane = await this.airplaneRepo.getAirplane(data.airplaneId);
-            const flight = await this.flightRepo.createFlight({...data, totalSeats: airplane.capacity});
+            const airplane = await this.airplaneRepo.get(data.airplaneId);
+            const flight = await this.flightRepo.create({...data, totalSeats: airplane.capacity});
             return flight;
         } catch (error) {
             console.log("Something went wrong in Service layer");
@@ -28,9 +30,9 @@ class FlightService{
         }
     }
 
-    async getFlight(flightId){
+    async getFlight(id){
         try{
-            const flight = await this.flightRepo.getFlight(flightId);
+            const flight = await this.flightRepo.get(id);
             return flight;
         }catch(error){
             console.log("Something went worng inside the Service layer");

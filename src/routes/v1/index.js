@@ -32,5 +32,5 @@ router.post('/airplanes', createMultipleAirplanes);
 // Routes for Flight CRUD
 router.post('/flights', validateCreateFlight, createFlight)
 router.get('/flights', getAllFlights);
-router.get('/flight/:flightId', getFlight);
+router.get('/flight', getFlight);
 module.exports = router

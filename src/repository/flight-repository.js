@@ -1,14 +1,18 @@
 const {Op} = require('sequelize')
 const { flight } =  require('../models/index');
-
-class FlightRepository{
-
+const CrudRepository = require('./crud-repository')
+class FlightRepository extends CrudRepository{
+    constructor(){
+        super(flight)
+    }
     #createFilter(data){
         let filter = {}
         if(data.arrivalAirportId){
             filter.arrivalAirportId = data.arrivalAirportId
         }
-        
+        if(data.flightNumber){
+            filter.flightNumber = data.flightNumber
+        }
         if(data.departureAirportId){
             filter.departureAirportId = data.departureAirportId
         }
@@ -32,24 +36,24 @@ class FlightRepository{
         //         {price: {[Op.lte]: 7000}}
         //     ]
         // })
-        // console.log(filter)
+        console.log(filter)
         return filter;
     }
 
     async createFlight(data){
         try {
-            const flight = await flight.create(data);
-            return flight;
+            const result = await flight.create(data);
+            return result;
         } catch (error) {
             console.log("Something went wrong in Repository layer");
             throw {error}
         }
     }
     
-    async getFlight(flightId){
+    async getFlight(id){
         try{
-            const flight = await flight.findByPk(flightId);
-            return flight;
+            const result = await flight.findByPk(id);
+            return result;
         }catch(error){
             console.log("Something went wrong in Repository layer");
             throw {error}
@@ -57,10 +61,11 @@ class FlightRepository{
     }
     async getAllFlight(filter){
         try {
-            const filterData = this.createFlight(filter);
-            const flight = await flight.findAll({
+            const filterData = this.#createFilter(filter);
+            const results = await flight.findAll({
                 where: filterData
             })
+            return results;
         } catch (error) {
             console.log("Something went wrong in Repository layer");
             throw {error}

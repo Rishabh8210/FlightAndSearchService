@@ -1,5 +1,3 @@
-const { where } = require("sequelize/lib/sequelize");
-
 class CrudRepository{
     constructor(model){
         this.model = model
@@ -10,7 +8,7 @@ class CrudRepository{
             const result = await this.model.create(data);
             return result
         } catch (error) {
-            console.log("Simething went wrong inside Repository layer");
+            console.log("Something went wrong inside Repository layer");
             throw {error}
         }
     }
@@ -21,7 +19,7 @@ class CrudRepository{
             await result.save();
             return result
         } catch (error) {
-            console.log("Simething went wrong inside Repository layer");
+            console.log("Something went wrong inside Repository layer");
             throw {error}
         }
     }
@@ -35,7 +33,7 @@ class CrudRepository{
             });
             return true
         } catch (error) {
-            console.log("Simething went wrong inside Repository layer");
+            console.log("Something went wrong inside Repository layer");
             throw {error}
         }
     }
@@ -45,7 +43,7 @@ class CrudRepository{
             const result = await this.model.findByPk(id);
             return result
         } catch (error) {
-            console.log("Simething went wrong inside Repository layer");
+            console.log("Something went wrong inside Repository layer");
             throw {error}
         }
     }
@@ -55,7 +53,7 @@ class CrudRepository{
             const result = await this.model.create(filter);
             return result
         } catch (error) {
-            console.log("Simething went wrong inside Repository layer");
+            console.log("Something went wrong inside Repository layer");
             throw {error}
         }
     }
