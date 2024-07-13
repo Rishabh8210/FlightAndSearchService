@@ -35,4 +35,7 @@
 ### City -> id, name, created_at, updated_at
 ### Airport -> id, name, address, city_id, created_at, updated_at
   - #### Relationship
-    - City has many Airports and Airport belongs to a city (one to many) 
+    - City has many Airports and Airport belongs to a city (one to many)
+   
+![image](https://github.com/user-attachments/assets/12305222-cbc7-487f-b962-46961fec1836)
+
