@@ -30,6 +30,16 @@ class FlightService extends CrudRepository{
         }
     }
 
+    async updateFlight(id, data){
+        try {
+            const response = await this.flightRepo.updateFlight(id, data);
+            return response
+        } catch (error) {
+            console.log("Something went worng inside the Service layer");
+            throw {error}
+        }
+    }
+
     async getFlight(id){
         try{
             const flight = await this.flightRepo.get(id);

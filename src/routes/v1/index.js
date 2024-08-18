@@ -3,6 +3,7 @@ const router = express.Router()
 const { validateCreateFlight } = require('../../middlewares/index')
 
 const { createCity, updateCity, getCity, deleteCity, getAllCities, createMultipleCities, createAirport, getAirport, updateAirport, deleteAirport, createMultipleAirports, getMultipleAirports, getCityAirports, createAirplane, updateAirplane, deleteAirplane, getAirplane, getMultipleAirplanes, createMultipleAirplanes, createFlight, getAllFlights, getFlight} = require('../../controllers/index');
+const { updateFlight } = require('../../controllers/flight-controller');
 
 // Routes for City CRUD
 router.get('/city/:id', getCity);
@@ -32,5 +33,6 @@ router.post('/airplanes', createMultipleAirplanes);
 // Routes for Flight CRUD
 router.post('/flights', validateCreateFlight, createFlight)
 router.get('/flights', getAllFlights);
-router.get('/flight', getFlight);
+router.get('/flights/:id', getFlight);
+router.patch('/flights/:id', updateFlight)
 module.exports = router

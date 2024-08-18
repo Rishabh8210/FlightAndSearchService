@@ -50,6 +50,20 @@ class FlightRepository extends CrudRepository{
         }
     }
     
+    async updateFlight(id, data){
+        try{
+            const result = await flight.update(data, {
+                where: {
+                    id: id
+                }
+            })
+            return true;
+        }catch(error){
+            console.log("Something went wrong in Repository layer");
+            throw {error}
+        }
+    }
+
     async getFlight(id){
         try{
             const result = await flight.findByPk(id);

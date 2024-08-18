@@ -22,9 +22,31 @@ const createFlight = async (req, res) => {
     }
 }
 
+const updateFlight = async(req, res) => {
+    try {
+        const flightId = req.params.id;
+        const data = req.body;
+        const response = await flightService.updateFlight(flightId, data);
+        return res.status(SuccessCodes.OK).json({
+            data: response,
+            message: 'Successfully updated the flight',
+            status: true,
+            err: {}
+        })
+    } catch (error) {
+        console.log(error);
+        return res.status(ServerErrorCodes.INTERNAL_SERVER_ERROR).json({
+            data: {},
+            message: 'Not able to update the flight',
+            status: false,
+            err: error
+        })
+    }
+}
+
 const getFlight = async(req, res) => {
     try {
-        const {id} = req.query;
+        const {id} = req.params;
         console.log(id)
         const flight = await flightService.get(id);
         return res.status(SuccessCodes.OK).json({
@@ -68,5 +90,6 @@ const getAllFlights = async(req, res) => {
 module.exports = {
     createFlight,
     getAllFlights,
-    getFlight
+    getFlight,
+    updateFlight
 }
