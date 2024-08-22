@@ -36,6 +36,14 @@
 ### Airport -> id, name, address, city_id, created_at, updated_at
   - #### Relationship
     - City has many Airports and Airport belongs to a city (one to many)
-   
+  
+
+## Other microservices
+- [API Gateway](https://github.com/Rishabh8210/ApiGateway.git)
+- [Auth Service](https://github.com/Rishabh8210/AuthService.git)
+- [Booking Service](https://github.com/Rishabh8210/AirTicketBookingService.git)
+- [Remainder Service](https://github.com/Rishabh8210/RemainderService.git)
+
+
 ![image](https://github.com/user-attachments/assets/12305222-cbc7-487f-b962-46961fec1836)
 
