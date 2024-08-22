@@ -39,7 +39,10 @@
   
 
 ## Other microservices
+<<<<<<< HEAD
 - [API Gateway](https://github.com/Rishabh8210/ApiGateway.git)
+=======
+>>>>>>> 9493e21a9e9c827e71f77cb8c4d52fa392cdfa99
 - [Auth Service](https://github.com/Rishabh8210/AuthService.git)
 - [Booking Service](https://github.com/Rishabh8210/AirTicketBookingService.git)
 - [Remainder Service](https://github.com/Rishabh8210/RemainderService.git)
